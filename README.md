@@ -2,7 +2,7 @@
 
 Aplicación personal de finanzas hecha con Python y Flet para controlar cuentas, movimientos, transferencias y balances desde una interfaz visual. Funciona con persistencia local, sin depender de un backend externo ni de una base de datos remota.
 
-Su objetivo es concentrar en una sola cartera la información financiera del usuario y ofrecer una consulta rápida del estado actual, el historial y las predicciones.
+Su objetivo es concentrar en una sola cartera la información financiera del usuario y ofrecer una consulta rápida del estado actual, el historial y predicciones.
 
 ## Vista previa
 
@@ -20,13 +20,12 @@ Las capturas reales de la aplicación se encuentran en la carpeta [`imagenes/`](
 - Clasificar cuentas por tipo, como efectivo, banco, deudas, inversiones o ahorros.
 - Crear nuevos tipos de cuenta.
 - Consultar el saldo individual y el balance global de la wallet.
-- Las cuentas no se pueden unir.
 
 ### Movimientos
 
 Cada ingreso o gasto incluye cuenta, tipo, categoría, descripción, importe y fecha. Los registros se pueden consultar aplicando filtros por cuenta, tipo, categoría y rango de fechas.
 
-La `Wallet` es la responsable de conservar y coordinar el historial de movimientos; las cuentas no almacenan el historial por separado.
+La `Wallet` es la responsable de conservar y coordinar el historial de movimientos; las cuentas ya no almacenan el historial por separado.
 
 ### Transferencias
 
@@ -89,31 +88,12 @@ project/
 - CSV para importación y exportación
 - Pytest para pruebas automatizadas
 
-## Ejecución local
-
-Desde la raíz del repositorio:
-
-```powershell
-python -m pip install flet pytest
-python project/main.py
-```
-
-Para ejecutar las pruebas:
-
-```powershell
-python -m pytest project/tests -q
-```
-
 ## APK para Android
 
-El APK se genera con Flet y los artefactos se guardan en [`project/build/apk/`](project/build/apk/). El paquete `.zip` descargable todavía queda pendiente de publicar junto con una versión final del APK.
-
-```powershell
-flet build apk --verbose
-```
+En la carpeta download.zip encontraras la APK para descargar directamente en android y utilizar.
 
 La versión de escritorio sigue pendiente de un ajuste visual específico; actualmente la interfaz está orientada principalmente a la experiencia móvil Android.
 
 ## Estado del proyecto
 
-Mi Wallet ya cuenta con el flujo central de gestión financiera, persistencia local, transferencias, filtros, importación/exportación y pruebas automatizadas. Las siguientes mejoras naturales son terminar la distribución del APK y continuar refinando la experiencia de escritorio.
+Mi Wallet ya cuenta con el flujo central de gestión financiera, persistencia local, transferencias, filtros, importación/exportación y pruebas automatizadas. Las siguientes mejoras serán implementar la creación de nuevos tipos de cuenta específicos como deudas o inversiones con cálculos de intereses automáticos y análisis financieros mas detallados.
