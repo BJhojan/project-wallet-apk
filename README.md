@@ -2,7 +2,7 @@
 
 Aplicación personal de finanzas hecha con Python y Flet para controlar cuentas, movimientos, transferencias y balances desde una interfaz visual. Funciona con persistencia local, sin depender de un backend externo ni de una base de datos remota.
 
-Su objetivo es concentrar en una sola cartera la información financiera del usuario y ofrecer una consulta rápida del estado actual, el historial y las predicciones.
+Su objetivo es concentrar en una sola cartera la información financiera del usuario y ofrecer una consulta rápida del estado actual, el historial y predicciones.
 
 ## Vista previa
 
