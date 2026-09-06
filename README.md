@@ -76,7 +76,8 @@ La aplicación permite importar y exportar información mediante CSV.
 Actualmente, la importación de archivos de **Money Manager** requiere este formato fijo de columnas, separadas por `;`:
 
 ```text
-account;category;currency;amount;ref_currency_amount;type;payment_type;payment_type_local;note;date;gps_latitude;gps_longitude;gps_accuracy_in_meters;warranty_in_month;transfer;payee;labels;envelope_id
+account;	category;	currency;	amount;	ref_currency_amount;	type;	payment_type;	payment_type_local;	note;	date;	gps_latitude;	gps_longitude;	gps_accuracy_in_meters;	warranty_in_month;	transfer;	payee;	labels;	envelope_id;	custom_category
+
 ```
 
 La exportación permite crear copias de respaldo de la información actual o trabajar con los datos fuera de la aplicación.
