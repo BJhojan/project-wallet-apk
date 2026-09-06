@@ -187,7 +187,7 @@ El uso cotidiano permitió detectar problemas de navegación, rendimiento y como
 
 ✅ **Finalizada**
 
-Se reconstruyó prácticamente toda la interfaz y el frontend, estableciendo una nueva estructura visual, nuevos formularios, configuración, vistas por periodos y un enfoque centrado en productividad.
+Se reconstruyó prácticamente toda la aplicación, estableciendo una nueva estructura visual, nuevos formularios, configuración, vistas por periodos y un enfoque centrado en productividad.
 
 ### Fase 5 — Estadísticas y predicciones
 
