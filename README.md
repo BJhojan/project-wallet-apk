@@ -1,105 +1,112 @@
 # Mi Wallet
 
-Aplicación personal de finanzas desarrollada con **Python y Flet** para gestionar cuentas, movimientos, transferencias y balances desde una interfaz visual.
+Aplicación personal de finanzas desarrollada con **Python y Flet** para gestionar cuentas, movimientos, transferencias y balances desde una interfaz visual intuitiva.
 
 La aplicación funciona con **persistencia local**, sin depender de un backend externo ni de una base de datos remota.
 
-Su objetivo es concentrar en una sola cartera la información financiera del usuario y ofrecer una consulta rápida del estado actual, el historial y diferentes indicadores para facilitar la gestión de ingresos, gastos, transferencias y predicciones financieras.
+**Objetivo:** Concentrar en una única cartera la información financiera del usuario y ofrecer una consulta rápida del estado actual, historial e indicadores para facilitar la gestión diaria.
 
-## Vista previa
+---
+
+## 📱 Vista previa
 
 Las capturas reales de la aplicación se encuentran en la carpeta [`imagenes/`](imagenes/).
 
+<details open>
+<summary><b>Pantallas principales</b></summary>
+
 | Inicio | Registros | Transferencias |
-| --- | --- | --- |
-| <img src="imagenes/Pantalla%20principal.png" width="300" alt="Pantalla principal"> | <img src="imagenes/Resumen%20de%20movimientos.png" width="300" alt="Resumen de movimientos"> | <img src="imagenes/Transferencias.png" width="300" alt="Transferencias"> |
+|:---:|:---:|:---:|
+| ![Pantalla principal](imagenes/Pantalla%20principal.png) | ![Resumen de movimientos](imagenes/Resumen%20de%20movimientos.png) | ![Pantalla Transferencias](imagenes/Nueva%20transferencia.png) |
 
 | Nuevo gasto | Nueva transferencia | Nueva cuenta |
-| --- | --- | --- |
-| <img src="imagenes/Nuevo%20gasto.png" width="300" alt="Nuevo gasto"> | <img src="imagenes/Nueva%20transferencia.png" width="300" alt="Nueva transferencia"> | <img src="imagenes/Nueva%20cuenta.png" width="300" alt="Nueva cuenta"> |
+|:---:|:---:|:---:|
+| ![Nuevo gasto](imagenes/Nuevo%20gasto.png) | ![Nueva transferencia](imagenes/Nueva%20transferencia.png) | ![Nueva cuenta](imagenes/Nueva%20cuenta.png) |
 
 | Configuración |
-| --- |
-| <img src="imagenes/Configuracion.png" width="300" alt="Configuración"> |
+|:---:|
+| ![Configuración](imagenes/Configuracion.png) |
 
-## Funcionalidades
+</details>
 
-### Cuentas y balance
+---
 
-- Crear, editar y eliminar cuentas.
-- Clasificar cuentas mediante tipos configurables, como efectivo, banco, deudas, inversiones o ahorros.
-- Crear nuevos tipos de cuenta.
-- Consultar el saldo individual y el balance global de la wallet.
-- Generar automáticamente movimientos de ajuste cuando corresponde.
+## ✨ Funcionalidades
 
-### Movimientos
+### 💰 Cuentas y balance
 
-Cada ingreso o gasto incluye información como cuenta, tipo, categoría, descripción, importe y fecha.
+- Crear, editar y eliminar cuentas
+- Clasificar cuentas mediante tipos configurables (efectivo, banco, deudas, inversiones, ahorros)
+- Crear nuevos tipos de cuenta personalizados
+- Consultar saldo individual y balance global de la wallet
+- Generar automáticamente movimientos de ajuste cuando sea necesario
 
-Los registros pueden consultarse mediante filtros por:
+### 📊 Movimientos
 
-- cuenta;
-- tipo;
-- categoría;
-- rango de fechas.
+Cada ingreso o gasto incluye:
+- Cuenta, tipo, categoría, descripción, importe y fecha
 
-Los movimientos se consultan por periodos para evitar cargar innecesariamente todo el historial al utilizar la aplicación.
+**Filtros disponibles:**
+- Por cuenta
+- Por tipo
+- Por categoría
+- Por rango de fechas
 
-La vista de inicio muestra únicamente información reciente, mientras que la sección de registros permite consultar periodos más amplios.
+**Consulta por periodos:** Evita cargar innecesariamente todo el historial. La vista de inicio muestra información reciente, mientras que la sección de registros permite consultar periodos más amplios.
 
-La `Wallet` conserva y coordina el historial general de movimientos, evitando que cada cuenta mantenga una copia independiente de sus registros.
-
-### Transferencias
+### 🔄 Transferencias
 
 Una transferencia relaciona una cuenta de origen con una cuenta de destino mediante un identificador compartido.
 
-En la interfaz se presenta como **una única tarjeta de transferencia**, aunque internamente afecte al saldo de dos cuentas.
+- Se presenta como **una única tarjeta de transferencia** en la interfaz
+- Internamente afecta al saldo de dos cuentas
+- Consultables desde registros con filtros correspondientes
 
-Las transferencias también pueden consultarse desde la sección de registros mediante sus filtros correspondientes.
+### 📈 Predicciones y análisis
 
-### Predicciones y análisis
+La aplicación incorpora predicciones basadas en datos registrados para una referencia sobre la evolución financiera esperada.
 
-La aplicación incorpora predicciones basadas en los datos registrados para ofrecer una referencia sobre la evolución financiera esperada.
+> ⚠️ **Estado:** Actualmente en desarrollo. Será ampliada con herramientas de análisis más detalladas.
 
-Actualmente esta parte se encuentra en desarrollo y será ampliada con herramientas de análisis más detalladas.
+### ⚙️ Configuración
 
-### Configuración
+Personaliza distintos aspectos de la wallet:
+- Privacidad (ocultar/mostrar saldos)
+- Preferencias de gráficos
+- Categorías y tipos de cuenta
+- Opciones generales de la aplicación
 
-La aplicación cuenta con una sección de configuración destinada a personalizar distintos aspectos de la wallet y mejorar la experiencia de uso.
+### 📥 Importación y exportación
 
-Entre las opciones actuales se incluyen configuraciones relacionadas con la privacidad, como la posibilidad de ocultar los saldos, además de preferencias sobre gráficos, categorías y tipos de cuenta.
-
-### Importación y exportación
-
-La aplicación permite importar y exportar información mediante CSV.
-
-Actualmente, la importación de archivos de **Money Manager** requiere este formato fijo de columnas, separadas por `;`:
-
-```text
-account;	category;	currency;	amount;	ref_currency_amount;	type;	payment_type;	payment_type_local;	note;	date;	gps_latitude;	gps_longitude;	gps_accuracy_in_meters;	warranty_in_month;	transfer;	payee;	labels;	envelope_id;	custom_category
-
+**Importación:** Soporta archivos CSV, incluyendo formato de **Money Manager**
+```
+account; category; currency; amount; ref_currency_amount; type; payment_type; payment_type_local; note; date; gps_latitude; gps_longitude; gps_accuracy_in_meters; warranty_in_month; transfer; payee
 ```
 
-La exportación permite crear copias de respaldo de la información actual o trabajar con los datos fuera de la aplicación.
+**Exportación:** Crea copias de respaldo o trabaja con datos fuera de la aplicación.
 
-La persistencia local permite conservar los datos incluso después de actualizar o reinstalar la aplicación en Android, siempre que el almacenamiento de datos de la aplicación se conserve en el dispositivo.
+**Persistencia local:** Los datos se conservan tras actualizar o reinstalar la aplicación en Android (siempre que se conserve el almacenamiento de datos).
 
-## Flujo principal
+---
 
-1. Crear o seleccionar las cuentas financieras.
-2. Registrar ingresos, gastos o transferencias.
-3. Consultar balances y registros mediante filtros.
-4. Revisar la información disponible en el inicio.
-5. Revisar las predicciones disponibles.
-6. Personalizar la aplicación desde Configuración.
-7. Guardar automáticamente los cambios en el almacenamiento local.
-8. Importar o exportar información cuando sea necesario.
+## 🎯 Flujo de uso
 
-## Arquitectura
+1. Crear o seleccionar cuentas financieras
+2. Registrar ingresos, gastos o transferencias
+3. Consultar balances y registros mediante filtros
+4. Revisar información en la pantalla de inicio
+5. Revisar predicciones disponibles
+6. Personalizar desde Configuración
+7. Los cambios se guardan automáticamente en almacenamiento local
+8. Importar o exportar información cuando sea necesario
 
-El proyecto separa la interfaz, la lógica de negocio, el dominio y la persistencia:
+---
 
-```text
+## 🏗️ Arquitectura
+
+El proyecto separa la interfaz, lógica de negocio, dominio y persistencia:
+
+```
 project/
 ├── main.py
 ├── backend/
@@ -115,111 +122,95 @@ project/
 └── build/
 ```
 
-- **Modelos:** representan `Account`, `Movement` y `Wallet`.
-- **Servicios:** coordinan cuentas, movimientos, transferencias, balances y predicciones.
-- **Persistencia:** administra el almacenamiento local y el intercambio de información mediante CSV.
-- **Interfaz:** Flet organiza la navegación, los formularios, los componentes visuales y las vistas de consulta.
-- **Pruebas:** cubren distintas partes del dominio, transferencias, navegación, importación y componentes de la interfaz.
+**Componentes principales:**
+- **Modelos:** `Account`, `Movement` y `Wallet`
+- **Servicios:** Coordinan cuentas, movimientos, transferencias, balances y predicciones
+- **Persistencia:** Administra almacenamiento local e intercambio CSV
+- **Interfaz:** Flet organiza navegación, formularios, componentes visuales y vistas
+- **Pruebas:** Cobertura de dominio, transferencias, navegación, importación y componentes UI
 
-La interfaz actual fue reconstruida para priorizar la experiencia de uso y reducir la dependencia de una visualización permanente del historial de movimientos.
+> La interfaz fue reconstruida para priorizar experiencia de uso y reducir dependencia del historial permanente de movimientos.
 
-## Tecnologías
+---
 
-- Python 3.11.3
-- Flet 0.86.5
-- JSON para persistencia local
-- CSV para importación y exportación
-- Pytest para pruebas automatizadas
+## 🛠️ Tecnologías
 
-## Descargar
+| Tecnología | Versión |
+|---|---|
+| Python | 3.11.3 |
+| Flet | 0.86.5 |
+| Persistencia | JSON |
+| Importación/Exportación | CSV |
+| Testing | Pytest |
 
-La aplicación puede descargarse desde el archivo [`download.zip`](download.zip), disponible en este mismo repositorio.
+---
 
-El archivo contiene la versión preparada para utilizar la aplicación en **Android**.
+## 📲 Descargar
 
-Actualmente la versión pública está orientada principalmente a móviles Android. La versión de escritorio todavía requiere algunos ajustes visuales.
+La aplicación puede descargarse desde [`download.zip`](download.zip) en este repositorio.
 
-## Compatibilidad
+**Plataformas:**
+- ✅ **Android:** Versión optimizada y completa
+- 🟡 **Escritorio:** Funcional pero con ajustes visuales pendientes
 
-La aplicación está diseñada principalmente para **Android**, aunque el proyecto utiliza una base de código multiplataforma mediante Flet.
+---
 
-Durante su desarrollo se realizaron pruebas específicas para resolver diferencias entre escritorio y Android, especialmente en interacción, selección de archivos y persistencia de datos.
+## 🔧 Compatibilidad
 
-## Estado del proyecto
+- **Diseño principal:** Android
+- **Base de código:** Multiplataforma mediante Flet
+- **Pruebas específicas:** Resueltas diferencias en interacción, selección de archivos y persistencia entre plataformas
 
-Mi Wallet cuenta actualmente con el flujo principal de gestión financiera:
+---
 
-- cuentas;
-- movimientos;
-- transferencias;
-- balances;
-- filtros por periodo;
-- predicciones;
-- configuración;
-- persistencia local;
-- importación y exportación;
-- pruebas automatizadas.
+## 📋 Estado del proyecto
 
-El proyecto continúa evolucionando a partir de pruebas de uso real.
+**Características implementadas:**
+- ✅ Gestión de cuentas
+- ✅ Registros de movimientos
+- ✅ Transferencias entre cuentas
+- ✅ Balances y consultas
+- ✅ Filtros por período
+- ✅ Predicciones iniciales
+- ✅ Configuración personalizable
+- ✅ Persistencia local
+- ✅ Importación/Exportación CSV
+- ✅ Suite de pruebas automatizadas
 
-Las siguientes mejoras estarán enfocadas principalmente en ampliar el análisis financiero, incorporar funcionalidades específicas para deudas e inversiones y añadir cálculos automáticos relacionados con intereses y objetivos de ahorro.
+**Evolución continua:** El proyecto evoluciona a partir de pruebas de uso real, enfocándose en ampliar análisis financiero, funcionalidades para deudas e inversiones, y cálculos automáticos.
 
-## Roadmap
+---
 
-### Fase 1 — Wallet funcional
+## 🚀 Roadmap
 
-✅ **Finalizada**
+| Fase | Estado | Descripción |
+|---|---|---|
+| **1 — Wallet funcional** | ✅ Finalizada | Flujo principal: cuentas, movimientos, transferencias, balances, persistencia, import/export y pruebas |
+| **2 — Adaptación Android** | ✅ Finalizada | Optimización para Android y resolución de problemas específicos de plataforma |
+| **3 — Pruebas de uso real** | ✅ Finalizada | Detección y corrección de problemas de navegación, rendimiento y UX |
+| **4 — Reorganización visual** | ✅ Finalizada | Rediseño completo de UI/UX, nuevos formularios y enfoque en productividad |
+| **5 — Estadísticas y predicciones** | 🟢 En desarrollo | Ampliación de gráficos, estadísticas y análisis |
+| **6 — Deudas e inversiones** | ⏳ Pendiente | Sistemas específicos para deudas, inversiones y objetivos de ahorro |
+| **7 — Pulido técnico** | ⏳ Pendiente | Optimizaciones, simplificaciones y mejora de estabilidad |
+| **8 — Prueba final** | ⏳ Pendiente | Verificación prolongada de estabilidad post-desarrollo |
 
-Implementación del flujo principal de cuentas, movimientos, transferencias, balances, persistencia, importación/exportación y pruebas.
+---
 
-### Fase 2 — Adaptación Android y compatibilidad
+## 💡 Filosofía del proyecto
 
-✅ **Finalizada**
+Mi Wallet se desarrolla de forma **incremental y pragmática**:
 
-Adaptación de la aplicación para Android y resolución de problemas específicos de plataforma.
+- Las decisiones de diseño se revisan cuando la experiencia práctica demuestra mejoras posibles
+- El objetivo es **calidad sobre cantidad** de funcionalidades
+- Enfoque: Herramienta **rápida, práctica y agradable** para uso diario
 
-### Fase 3 — Pruebas de uso real
+> *No se trata de agregar features, sino de construir algo que realmente funcione y sea un placer usar.*
 
-✅ **Finalizada**
+---
 
-El uso cotidiano permitió detectar problemas de navegación, rendimiento y comodidad, provocando cambios importantes en el diseño de la aplicación.
+## 📝 Notas y mejoras sugeridas
 
-### Fase 4 — Reorganización visual, UX y estética
-
-✅ **Finalizada**
-
-Se reconstruyó prácticamente toda la aplicación, estableciendo una nueva estructura visual, nuevos formularios, configuración, vistas por periodos y un enfoque centrado en productividad.
-
-### Fase 5 — Estadísticas y predicciones
-
-🟢 **En desarrollo**
-
-Ampliación de los gráficos, estadísticas, análisis y predicciones disponibles para el usuario.
-
-### Fase 6 — Deudas, inversiones y ahorros
-
-⏳ **Pendiente**
-
-Incorporación de sistemas específicos para gestionar deudas, inversiones y objetivos de ahorro, incluyendo cálculos automáticos de intereses.
-
-### Fase 7 — Pulido técnico
-
-⏳ **Pendiente**
-
-No se plantea actualmente una fase de optimización masiva independiente. La arquitectura y la interfaz actual ya han reducido considerablemente los problemas de rendimiento identificados durante las etapas iniciales de desarrollo.
-
-Esta fase queda reservada para corregir detalles técnicos, simplificar elementos que lo necesiten y mejorar la estabilidad general.
-
-### Fase 8 — Prueba final
-
-⏳ **Pendiente**
-
-Periodo prolongado de uso para verificar la estabilidad de todas las funcionalidades después de completar las etapas de desarrollo principales.
-
-## Filosofía del proyecto
-
-Mi Wallet se desarrolla de forma incremental y a partir del uso real.
-
-Las decisiones de diseño y arquitectura se revisan cuando la experiencia práctica demuestra que una solución puede mejorarse.
-
-El objetivo no es añadir funcionalidades por cantidad, sino construir una herramienta que resulte **rápida, práctica y agradable de utilizar en el día a día**.
+- Considera agregar badges de versión y licencia en la cabecera
+- Documentación de instalación para desarrollo podría ser útil
+- Links a issues/contributing podrían mejorar la colaboración
+- Considera agregar una sección de FAQ sobre datos y privacidad
