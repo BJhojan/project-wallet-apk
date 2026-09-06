@@ -78,10 +78,36 @@ Personaliza distintos aspectos de la wallet:
 
 ### 📥 Importación y exportación
 
-**Importación:** Soporta archivos CSV, incluyendo formato de **Money Manager**
+**Importación:** Soporta archivos CSV en formato **Money Manager**
+
+El archivo debe contener las siguientes columnas separadas por tabulación (tab):
+
 ```
-account; category; currency; amount; ref_currency_amount; type; payment_type; payment_type_local; note; date; gps_latitude; gps_longitude; gps_accuracy_in_meters; warranty_in_month; transfer; payee
+account	category	currency	amount	ref_currency_amount	type	payment_type	payment_type_local	note	date	gps_latitude	gps_longitude	gps_accuracy_in_meters	warranty_in_month	transfer	payee	labels	envelope_id	custom_category
 ```
+
+**Descripción de campos:**
+| Campo | Descripción |
+|---|---|
+| `account` | Nombre de la cuenta |
+| `category` | Categoría del movimiento |
+| `currency` | Código de moneda (ej: USD, EUR) |
+| `amount` | Cantidad en moneda local |
+| `ref_currency_amount` | Cantidad en moneda de referencia |
+| `type` | Tipo de transacción (ingreso, gasto, etc.) |
+| `payment_type` | Método de pago |
+| `payment_type_local` | Método de pago en idioma local |
+| `note` | Notas o descripción |
+| `date` | Fecha del movimiento |
+| `gps_latitude` | Latitud (opcional) |
+| `gps_longitude` | Longitud (opcional) |
+| `gps_accuracy_in_meters` | Precisión GPS (opcional) |
+| `warranty_in_month` | Garantía en meses (opcional) |
+| `transfer` | ID de transferencia relacionada (si aplica) |
+| `payee` | Beneficiario/Pagador |
+| `labels` | Etiquetas asociadas |
+| `envelope_id` | ID de sobre/presupuesto |
+| `custom_category` | Categoría personalizada |
 
 **Exportación:** Crea copias de respaldo o trabaja con datos fuera de la aplicación.
 
