@@ -12,22 +12,23 @@ La aplicación funciona con **persistencia local**, sin depender de un backend e
 
 Las capturas reales de la aplicación se encuentran en la carpeta [`imagenes/`](imagenes/).
 
-<details open>
-<summary><b>Pantallas principales</b></summary>
+### Pantalla de inicio
+![Pantalla principal](imagenes/Pantalla%20principal.png)
 
-| Inicio | Registros | Transferencias |
-|:---:|:---:|:---:|
-| ![Pantalla principal](imagenes/Pantalla%20principal.png) | ![Resumen de movimientos](imagenes/Resumen%20de%20movimientos.png) | ![Pantalla Transferencias](imagenes/Nueva%20transferencia.png) |
+### Resumen de movimientos
+![Resumen de movimientos](imagenes/Resumen%20de%20movimientos.png)
 
-| Nuevo gasto | Nueva transferencia | Nueva cuenta |
-|:---:|:---:|:---:|
-| ![Nuevo gasto](imagenes/Nuevo%20gasto.png) | ![Nueva transferencia](imagenes/Nueva%20transferencia.png) | ![Nueva cuenta](imagenes/Nueva%20cuenta.png) |
+### Nuevo gasto
+![Nuevo gasto](imagenes/Nuevo%20gasto.png)
 
-| Configuración |
-|:---:|
-| ![Configuración](imagenes/Configuracion.png) |
+### Nueva transferencia
+![Nueva transferencia](imagenes/Nueva%20transferencia.png)
 
-</details>
+### Nueva cuenta
+![Nueva cuenta](imagenes/Nueva%20cuenta.png)
+
+### Configuración
+![Configuración](imagenes/Configuracion.png)
 
 ---
 
@@ -87,6 +88,7 @@ account	category	currency	amount	ref_currency_amount	type	payment_type	payment_t
 ```
 
 **Descripción de campos:**
+
 | Campo | Descripción |
 |---|---|
 | `account` | Nombre de la cuenta |
