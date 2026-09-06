@@ -4,7 +4,7 @@ Aplicación personal de finanzas desarrollada con **Python y Flet** para gestion
 
 La aplicación funciona con **persistencia local**, sin depender de un backend externo ni de una base de datos remota.
 
-Su objetivo es concentrar en una sola cartera la información financiera del usuario y ofrecer una consulta rápida del estado actual, el historial y diferentes indicadores para facilitar la gestión cotidiana.
+Su objetivo es concentrar en una sola cartera la información financiera del usuario y ofrecer una consulta rápida del estado actual, el historial y diferentes indicadores para facilitar la gestión de ingresos, gastos, transferencias y predicciones financieras.
 
 ## Vista previa
 
@@ -12,15 +12,15 @@ Las capturas reales de la aplicación se encuentran en la carpeta [`imagenes/`](
 
 | Inicio | Registros | Transferencias |
 | --- | --- | --- |
-| ![Pantalla principal](imagenes/Pantalla%20principal.png) | ![Resumen de movimientos](imagenes/Resumen%20de%20movimientos.png) | ![Transferencias](imagenes/Transferencias.png) |
+| <img src="imagenes/Pantalla%20principal.png" width="300" alt="Pantalla principal"> | <img src="imagenes/Resumen%20de%20movimientos.png" width="300" alt="Resumen de movimientos"> | <img src="imagenes/Transferencias.png" width="300" alt="Transferencias"> |
 
 | Nuevo gasto | Nueva transferencia | Nueva cuenta |
 | --- | --- | --- |
-| ![Nuevo gasto](imagenes/Nuevo%20gasto.png) | ![Nueva transferencia](imagenes/Nueva%20transferencia.png) | ![Nueva cuenta](imagenes/Nueva%20cuenta.png) |
+| <img src="imagenes/Nuevo%20gasto.png" width="300" alt="Nuevo gasto"> | <img src="imagenes/Nueva%20transferencia.png" width="300" alt="Nueva transferencia"> | <img src="imagenes/Nueva%20cuenta.png" width="300" alt="Nueva cuenta"> |
 
 | Configuración |
 | --- |
-| ![Configuración](imagenes/Configuracion.png) |
+| <img src="imagenes/Configuracion.png" width="300" alt="Configuración"> |
 
 ## Funcionalidades
 
@@ -76,7 +76,7 @@ La aplicación permite importar y exportar información mediante CSV.
 Actualmente, la importación de archivos de **Money Manager** requiere este formato fijo de columnas, separadas por `;`:
 
 ```text
-account;category;currency;amount;ref_currency_amount;type;payment_type;payment_type_local;note;date;gps_latitude;gps_longitude;gps_accuracy_in_meters;warranty_in_month;transfer;payee;labels;envelope_id;custom_category
+account;category;currency;amount;ref_currency_amount;type;payment_type;payment_type_local;note;date;gps_latitude;gps_longitude;gps_accuracy_in_meters;warranty_in_month;transfer;payee;labels;envelope_id
 ```
 
 La exportación permite crear copias de respaldo de la información actual o trabajar con los datos fuera de la aplicación.
@@ -205,7 +205,7 @@ Incorporación de sistemas específicos para gestionar deudas, inversiones y obj
 
 ⏳ **Pendiente**
 
-No se plantea actualmente una fase de optimización masiva independiente. La arquitectura y la interfaz actual ya han reducido considerablemente los problemas de rendimiento identificados durante las primeras versiones.
+No se plantea actualmente una fase de optimización masiva independiente. La arquitectura y la interfaz actual ya han reducido considerablemente los problemas de rendimiento identificados durante las etapas iniciales de desarrollo.
 
 Esta fase queda reservada para corregir detalles técnicos, simplificar elementos que lo necesiten y mejorar la estabilidad general.
 
