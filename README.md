@@ -2,7 +2,7 @@
 
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
 [![Flet 0.86.5](https://img.shields.io/badge/Flet-0.86.5-green.svg)](https://flet.dev/)
-[![License: MIT + Commons Clause](https://img.shields.io/badge/License-MIT%2BCommons%20Clause-orange.svg)](LICENSE)
+[![License: MIT with Commons Clause](https://img.shields.io/badge/License-MIT%20with%20Commons%20Clause-orange.svg)](LICENSE)
 [![Private Repository](https://img.shields.io/badge/Status-Private-red.svg)]()
 
 Aplicación personal de finanzas desarrollada con **Python y Flet** para gestionar cuentas, movimientos, transferencias y balances desde una interfaz visual intuitiva.
@@ -168,7 +168,7 @@ Este repositorio distribuye la aplicación mediante [`download.zip`](download.zi
 .
 ├── download.zip       # Paquete de distribución que contiene project.apk
 ├── imagenes/          # Capturas de la aplicación
-├── LICENSE            # Licencia MIT + Commons Clause
+├── LICENSE            # Licencia MIT modificada con Commons Clause
 └── README.md          # Documentación del proyecto
 ```
 
@@ -296,7 +296,13 @@ R: En Android, los datos se conservan si mantienes el almacenamiento de datos. E
 
 ## 📝 Licencia
 
-Este proyecto está licenciado bajo **MIT License + Commons Clause**.
+El material original de este proyecto se distribuye bajo la **Licencia MIT
+con la condición Commons Clause v1.0**, incluida en [`LICENSE`](LICENSE).
+
+La condición Commons Clause modifica el permiso MIT de venta: no se concede el
+derecho a vender el software ni un producto o servicio cuyo valor derive total
+o sustancialmente de su funcionalidad. Por tanto, esta no es la Licencia MIT
+estándar ni una licencia aprobada por la OSI.
 
 ### ¿Qué significa esto?
 
@@ -308,9 +314,12 @@ Este proyecto está licenciado bajo **MIT License + Commons Clause**.
 
 #### ❌ **No está permitido:**
 - **Vender el software**
-- Ofrecerlo como servicio comercial
-- Cobrar por hosting basado en este código
-- Monetizar de ninguna forma
+- Vender un producto o servicio cuyo valor derive total o sustancialmente de
+	la funcionalidad del software, incluido ofrecerlo como servicio o cobrar por
+	hosting basado en este código
+
+Las dependencias de terceros, como Python y Flet, conservan sus propias
+licencias. Esta licencia solo cubre el material original de este proyecto.
 
 Para los términos completos, consulta el archivo [`LICENSE`](LICENSE).
 
@@ -343,7 +352,7 @@ Para los términos completos, consulta el archivo [`LICENSE`](LICENSE).
 - ✅ Actualizado roadmap con fase de automatización
 - ✅ Tabla de tecnologías mejorada con propósitos
 - ✅ Clarificación sobre compatibilidad de plataformas
-- ✅ Sección de Licencia con explicación de MIT + Commons Clause
+- ✅ Sección de Licencia con explicación de MIT modificada con Commons Clause
 
 ---
 
