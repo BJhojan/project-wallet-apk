@@ -2,14 +2,14 @@
 
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
 [![Flet 0.86.5](https://img.shields.io/badge/Flet-0.86.5-green.svg)](https://flet.dev/)
-[![License: MIT with Commons Clause](https://img.shields.io/badge/License-MIT%20with%20Commons%20Clause-orange.svg)](LICENSE)
+[![License: MIT + Commons Clause](https://img.shields.io/badge/License-MIT%2BCommons%20Clause-orange.svg)](LICENSE)
 [![Private Repository](https://img.shields.io/badge/Status-Private-red.svg)]()
 
-Aplicación personal de finanzas desarrollada con **Python y Flet** para gestionar cuentas, movimientos, transferencias y balances desde una interfaz visual intuitiva.
+Aplicación personal de finanzas desarrollada con **Python y Flet** para gestionar cuentas, movimientos, transferencias, deudas y balances desde una interfaz visual intuitiva.
 
 La aplicación funciona con **persistencia local**, sin depender de un backend externo ni de una base de datos remota.
 
-**Objetivo:** Concentrar en una única cartera la información financiera del usuario y ofrecer una consulta rápida del estado actual, historial e indicadores para facilitar la gestión diaria.
+**Objetivo:** Concentrar en una única cartera la información financiera del usuario y ofrecer una consulta rápida del estado actual, historial, deuda y saldo para facilitar la gestión diaria.
 
 ---
 
@@ -84,11 +84,23 @@ Una transferencia relaciona una cuenta de origen con una cuenta de destino media
 - Internamente afecta al saldo de dos cuentas
 - Consultables desde registros con filtros correspondientes
 
+### 💳 Deudas
+
+- Crear, editar y eliminar deudas con nombre, institución, capital, interés, plazo, cuota y fecha del primer pago
+- Calcular automáticamente la próxima fecha de pago mensual
+- Registrar pagos desde una cuenta normal asociados a una deuda concreta
+- Mantener separados el capital pendiente y los intereses acumulados
+- Registrar intereses como movimientos asociados a la deuda
+- Consultar el detalle de una deuda y sus movimientos asociados
+- Filtrar entre deudas activas y deudas cerradas
+- Ordenar por próximo pago, nombre, saldo pendiente o progreso
+- Mostrar pagos en verde e intereses en rojo
+
 ### 📈 Predicciones y análisis
 
 La aplicación incorpora predicciones basadas en datos registrados para una referencia sobre la evolución financiera esperada.
 
-> ⚠️ **Estado:** Actualmente en desarrollo. Será ampliada con herramientas de análisis más detalladas.
+> ⚠️ **Estado:** Disponible como código heredado, pero no forma parte de la pantalla principal actual. Se reservará para una futura ventana de análisis.
 
 ### ⚙️ Configuración
 
@@ -100,7 +112,7 @@ Personaliza distintos aspectos de la wallet:
 
 ### 📥 Importación y exportación
 
-**Importación:** Soporta archivos CSV en formato **Money Manager**
+**Importación:** Soporta archivos CSV en formato **Money Manager**.
 
 El archivo debe contener las siguientes columnas separadas por comas:
 
@@ -142,12 +154,13 @@ account	category	currency	amount	ref_currency_amount	type	payment_type	payment_t
 
 1. Crear o seleccionar cuentas financieras
 2. Registrar ingresos, gastos o transferencias
-3. Consultar balances y registros mediante filtros
-4. Revisar información en la pantalla de inicio
-5. Revisar predicciones disponibles
-6. Personalizar desde Configuración
-7. Los cambios se guardan automáticamente en almacenamiento local
-8. Importar o exportar información cuando sea necesario
+3. Crear deudas y definir capital, interés, plazo, cuota y primer pago
+4. Registrar pagos desde una cuenta y consultar sus movimientos asociados
+5. Consultar balances y registros mediante filtros
+6. Revisar información de cuentas y movimientos recientes en Inicio
+7. Personalizar desde Configuración
+8. Los cambios se guardan automáticamente en almacenamiento local
+9. Importar o exportar información cuando sea necesario
 
 ---
 
@@ -156,8 +169,8 @@ account	category	currency	amount	ref_currency_amount	type	payment_type	payment_t
 Este repositorio distribuye la aplicación mediante [`download.zip`](download.zip). El ZIP contiene el archivo `project.apk`.
 
 1. Descarga [`download.zip`](download.zip) desde este repositorio.
-2. Extrae el archivo `project.apk` en tu dispositivo Android.
-3. Transfiere el APK al dispositivo Android si lo descargaste en otro equipo.
+2. Extrae el archivo `project.apk` en tu dispositivo Android o en tu equipo.
+3. Si lo descargaste en otro equipo, transfiere el APK al dispositivo Android.
 4. Abre el APK y autoriza la instalación desde esa fuente cuando Android lo solicite.
 
 > Android puede mostrar una advertencia al instalar un APK descargado fuera de Google Play. Instálalo únicamente si confías en el origen del archivo.
@@ -168,11 +181,11 @@ Este repositorio distribuye la aplicación mediante [`download.zip`](download.zi
 .
 ├── download.zip       # Paquete de distribución que contiene project.apk
 ├── imagenes/          # Capturas de la aplicación
-├── LICENSE            # Licencia MIT modificada con Commons Clause
-└── README.md          # Documentación del proyecto
+├── LICENSE            # Licencia MIT + Commons Clause
+└── README.md          # Documentación del proyecto 
 ```
 
-El código fuente no está incluido en este paquete de distribución. Por tanto, las instrucciones de compilación con Python/Flet no aplican a esta copia del repositorio.
+Este repositorio no incluye el código fuente de la aplicación; solo incluye el paquete de distribución y las capturas de la versión disponible.
 
 ---
 
@@ -220,7 +233,11 @@ La aplicación puede descargarse desde [`download.zip`](download.zip) en este re
 - ✅ Transferencias entre cuentas
 - ✅ Balances y consultas
 - ✅ Filtros por período, cuenta, tipo y categoría
-- ✅ Predicciones iniciales
+- ✅ Predicciones iniciales (reservadas para una futura vista de análisis)
+- ✅ Gestión completa de deudas e intereses
+- ✅ Pagos de deuda asociados a cuenta, categoría y `debt_id`
+- ✅ Clasificación de deudas activas y cerradas
+- ✅ Detalle de deuda con movimientos asociados y acciones de pago, interés y modificación
 - ✅ Configuración personalizable
 - ✅ Persistencia local (JSON)
 - ✅ Importación/Exportación CSV (formato Money Manager)
@@ -239,11 +256,12 @@ La aplicación puede descargarse desde [`download.zip`](download.zip) en este re
 | **2 — Adaptación Android** | ✅ Finalizada | Optimización para Android y resolución de problemas específicos de plataforma |
 | **3 — Pruebas de uso real** | ✅ Finalizada | Detección y corrección de problemas de navegación, rendimiento y UX |
 | **4 — Reorganización visual** | ✅ Finalizada | Rediseño completo de UI/UX, nuevos formularios y enfoque en productividad |
-| **5 — Estadísticas y predicciones** | 🟢 En desarrollo | Ampliación de gráficos, estadísticas y análisis con Flet Charts |
-| **6 — Deudas e inversiones** | ⏳ Pendiente | Sistemas específicos para deudas, inversiones, intereses y objetivos de ahorro |
-| **7 — Automatización** | ⏳ Pendiente | Pagos automáticos, generación de reportes periódicos, alertas |
-| **8 — Pulido técnico** | ⏳ Pendiente | Optimizaciones, simplificaciones y mejora de estabilidad |
-| **9 — Prueba final** | ⏳ Pendiente | Verificación prolongada de estabilidad post-desarrollo |
+| **5 — Estadísticas y predicciones** | ⏸️ Pospuesta | Llevar gráficos, estadísticas y predicciones a una futura ventana de análisis |
+| **6 — Deudas** | ✅ Finalizada | Capital, intereses, pagos asociados y deudas cerradas |
+| **7 — Inversiones** | ⏳ Pendiente | Inversiones, objetivos de ahorro y seguimiento de rendimiento |
+| **8 — Automatización** | ⏳ Pendiente | Pagos automáticos, generación de reportes periódicos, alertas |
+| **9 — Pulido técnico** | ⏳ Pendiente | Optimizaciones, simplificaciones y mejora de estabilidad |
+| **10 — Prueba final** | ⏳ Pendiente | Verificación prolongada de estabilidad post-desarrollo |
 
 ---
 
@@ -253,7 +271,7 @@ Mi Wallet se desarrolla de forma **incremental y pragmática**:
 
 - Las decisiones de diseño se revisan cuando la experiencia práctica demuestra mejoras posibles
 - El objetivo es **calidad sobre cantidad** de funcionalidades
-- Enfoque: Herramienta **rápida, práctica y agradable** para uso diario
+- Enfoque: herramienta **rápida, práctica y agradable** para uso diario
 - Automatización progresiva de tareas repetitivas
 
 > *No se trata de agregar features, sino de construir algo que realmente funcione y sea un placer usar.*
@@ -282,7 +300,7 @@ R: No. La aplicación funciona completamente offline. La conexión a internet es
 R: Actualmente, los datos se sincronizan manualmente mediante export/import CSV. La sincronización automática podría ser una funcionalidad futura.
 
 **P: ¿Qué requisitos de espacio en disco necesito?**
-R: La aplicación ocupa aproximadamente 150-200 MB. El almacenamiento de datos adicionales depende del número de movimientos registrados (Actualmente menos de 1 mega por 3800 registros).
+R: La aplicación ocupa aproximadamente 150-200 MB. El almacenamiento de datos adicionales depende del número de movimientos registrados (actualmente menos de 1 MB por 3800 registros).
 
 ### 🐛 Problemas y solución
 
@@ -296,13 +314,7 @@ R: En Android, los datos se conservan si mantienes el almacenamiento de datos. E
 
 ## 📝 Licencia
 
-El material original de este proyecto se distribuye bajo la **Licencia MIT
-con la condición Commons Clause v1.0**, incluida en [`LICENSE`](LICENSE).
-
-La condición Commons Clause modifica el permiso MIT de venta: no se concede el
-derecho a vender el software ni un producto o servicio cuyo valor derive total
-o sustancialmente de su funcionalidad. Por tanto, esta no es la Licencia MIT
-estándar ni una licencia aprobada por la OSI.
+Este proyecto está licenciado bajo **MIT License with Commons Clause Condition**.
 
 ### ¿Qué significa esto?
 
@@ -310,16 +322,12 @@ estándar ni una licencia aprobada por la OSI.
 - Usar el software libremente
 - Modificar el código fuente
 - Distribuir copias
-- Uso personal y educativo
+- Uso personal y educativo, respetando las condiciones de la licencia
 
 #### ❌ **No está permitido:**
-- **Vender el software**
-- Vender un producto o servicio cuyo valor derive total o sustancialmente de
-	la funcionalidad del software, incluido ofrecerlo como servicio o cobrar por
-	hosting basado en este código
-
-Las dependencias de terceros, como Python y Flet, conservan sus propias
-licencias. Esta licencia solo cubre el material original de este proyecto.
+- **Vender el software** o un producto cuyo valor derive sustancialmente de él
+- Ofrecerlo como servicio comercial basado en su funcionalidad
+- Cobrar por servicios de hosting, consultoría o soporte relacionados con el software
 
 Para los términos completos, consulta el archivo [`LICENSE`](LICENSE).
 
@@ -342,17 +350,13 @@ Para los términos completos, consulta el archivo [`LICENSE`](LICENSE).
 
 ## 📝 Mejoras implementadas en este README
 
-- ✅ Agregados badges de versión, tecnología y licencia
-- ✅ Añadida tabla de contenidos para mejor navegación
-- ✅ Sección de instalación y configuración detallada
-- ✅ Instrucciones para compilar APK de Android
-- ✅ Arquitectura mejorada con descripción de directorios
-- ✅ FAQ completo sobre privacidad, uso y solución de problemas
-- ✅ Enlaces directos para reportar issues
-- ✅ Actualizado roadmap con fase de automatización
-- ✅ Tabla de tecnologías mejorada con propósitos
-- ✅ Clarificación sobre compatibilidad de plataformas
-- ✅ Sección de Licencia con explicación de MIT modificada con Commons Clause
+- ✅ Actualización del estado real del proyecto
+- ✅ Alineación con la distribución actual del repositorio: `download.zip` + imágenes
+- ✅ Documentación de gestión de deudas e intereses
+- ✅ Ajuste del roadmap y del estado de funcionalidades
+- ✅ Mantenimiento de capturas y flujo de instalación del APK
+- ✅ Clarificación de que este repositorio no incluye el código fuente
+- ✅ Mejora de la sección de licencia y compatibilidad
 
 ---
 
