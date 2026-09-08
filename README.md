@@ -2,8 +2,8 @@
 
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
 [![Flet 0.86.5](https://img.shields.io/badge/Flet-0.86.5-green.svg)](https://flet.dev/)
-[![License: MIT + Commons Clause](https://img.shields.io/badge/License-MIT%2BCommons%20Clause-orange.svg)](LICENSE)
-[![Private Repository](https://img.shields.io/badge/Status-Private-red.svg)]()
+[![License: MIT with Commons Clause](https://img.shields.io/badge/License-MIT%20with%20Commons%20Clause-orange.svg)](LICENSE)
+[![Public Repository](https://img.shields.io/badge/Status-Public-brightgreen.svg)]()
 
 Aplicación personal de finanzas desarrollada con **Python y Flet** para gestionar cuentas, movimientos, transferencias, deudas y balances desde una interfaz visual intuitiva.
 
