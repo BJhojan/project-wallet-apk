@@ -1,13 +1,13 @@
-# Mi Wallet
+﻿# Mi Wallet
 
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
 [![Flet 0.86.5](https://img.shields.io/badge/Flet-0.86.5-green.svg)](https://flet.dev/)
-[![License: MIT with Commons Clause](https://img.shields.io/badge/License-MIT%20with%20Commons%20Clause-orange.svg)](LICENSE)
-[![Public Repository](https://img.shields.io/badge/Status-Public-brightgreen.svg)]()
+[![License: MIT + Commons Clause](https://img.shields.io/badge/License-MIT%2BCommons%20Clause-orange.svg)](LICENSE)
+[![Status: Release package](https://img.shields.io/badge/Status-Release%20package-blue.svg)]()
 
 Aplicación personal de finanzas desarrollada con **Python y Flet** para gestionar cuentas, movimientos, transferencias, deudas y balances desde una interfaz visual intuitiva.
 
-La aplicación funciona con **persistencia local**, sin depender de un backend externo ni de una base de datos remota.
+Este repositorio contiene la **versión distribuible pública** de la app junto con capturas de pantalla y el paquete de descarga. **No incluye el código fuente completo del proyecto** ni el entorno de desarrollo, sino la entrega preparada para instalar y probar.
 
 **Objetivo:** Concentrar en una única cartera la información financiera del usuario y ofrecer una consulta rápida del estado actual, historial, deuda y saldo para facilitar la gestión diaria.
 
@@ -17,9 +17,9 @@ La aplicación funciona con **persistencia local**, sin depender de un backend e
 
 - [Vista previa](#-vista-previa)
 - [Funcionalidades](#-funcionalidades)
-- [Descarga e instalación](#-descarga-e-instalación)
+- [Instalación](#-instalación-y-configuración)
 - [Uso](#-flujo-de-uso)
-- [Contenido del repositorio](#-contenido-del-repositorio)
+- [Arquitectura](#-arquitectura)
 - [Tecnologías](#-tecnologías)
 - [Estado del proyecto](#-estado-del-proyecto)
 - [Roadmap](#-roadmap)
@@ -86,15 +86,30 @@ Una transferencia relaciona una cuenta de origen con una cuenta de destino media
 
 ### 💳 Deudas
 
+Una deuda es una **cuenta** (subclase de `Account`, tipo "Deuda"): puede recibir gastos, ingresos y transferencias igual que cualquier cuenta.
+
+**Modelo:**
 - Crear, editar y eliminar deudas con nombre, institución, capital, interés, plazo, cuota y fecha del primer pago
+- Cada cargo se agrupa por categoría en un **`category_debt`** (categoría, monto, pagado, fecha)
+- El balance de la deuda es `pagado − total adeudado` (negativo mientras se deba, 0 al saldarse)
+- Se marca **cerrada** cuando lo pagado cubre el total adeudado (capital + intereses)
+
+**Reglas de los movimientos sobre la deuda:**
+- **Gasto con la deuda** → aumenta el capital y crea/aumenta el `category_debt` de esa categoría
+- **Categoría "Intereses"** → no aumenta el capital, solo el interés acumulado
+- **Transferencia saliente** (desde la deuda) → avance/crédito, equivale a un gasto
+- **Transferencia entrante / ingreso** (hacia la deuda) → pago que amortiza los `category_debt` del más antiguo al más nuevo, cerrándolos al saldarse
+- El pago se imputa **primero a intereses y luego a capital**, registrando cuánto interés se pagó en cada categoría
+
+**Interfaz:**
+- Las deudas aparecen como cuentas en Inicio y en los selectores de movimientos/transferencias
+- **Convertir cuenta en deuda** desde el appbar de Deudas: el historial de la cuenta se reprocesa con las reglas anteriores
 - Calcular automáticamente la próxima fecha de pago mensual
 - Registrar pagos desde una cuenta normal asociados a una deuda concreta
-- Mantener separados el capital pendiente y los intereses acumulados
-- Registrar intereses como movimientos asociados a la deuda
-- Consultar el detalle de una deuda y sus movimientos asociados
+- Consultar el detalle con desglose por categorías (capital e interés pagado al cerrarse) y movimientos asociados
 - Filtrar entre deudas activas y deudas cerradas
 - Ordenar por próximo pago, nombre, saldo pendiente o progreso
-- Mostrar pagos en verde e intereses en rojo
+- Pagos en verde; gastos, intereses y avances en rojo
 
 ### 📈 Predicciones y análisis
 
@@ -117,7 +132,8 @@ Personaliza distintos aspectos de la wallet:
 El archivo debe contener las siguientes columnas separadas por comas:
 
 ```
-account	category	currency	amount	ref_currency_amount	type	payment_type	payment_type_local	note	date	gps_latitude	gps_longitude	gps_accuracy_in_meters	warranty_in_month	transfer	payee	labels	envelope_id	custom_category
+account	category, currency, amount, ref_currency_amount, type, payment_type, payment_type_local, note, date, gps_latitude, gps_longitude, gps_accuracy_in_meters, warranty_in_month, transfer, payee, labels, envelope_id, custom_category
+
 ```
 
 **Descripción de campos:**
@@ -154,39 +170,64 @@ account	category	currency	amount	ref_currency_amount	type	payment_type	payment_t
 
 1. Crear o seleccionar cuentas financieras
 2. Registrar ingresos, gastos o transferencias
-3. Crear deudas y definir capital, interés, plazo, cuota y primer pago
-4. Registrar pagos desde una cuenta y consultar sus movimientos asociados
-5. Consultar balances y registros mediante filtros
-6. Revisar información de cuentas y movimientos recientes en Inicio
-7. Personalizar desde Configuración
-8. Los cambios se guardan automáticamente en almacenamiento local
-9. Importar o exportar información cuando sea necesario
+3. Crear deudas o convertir una cuenta existente en deuda
+4. Registrar gastos y avances directamente sobre la deuda (se agrupan por categoría)
+5. Registrar pagos hacia la deuda (se amortizan primero intereses, luego capital, del cargo más antiguo al más reciente)
+6. Consultar balances y registros mediante filtros
+7. Revisar información de cuentas, deudas y movimientos recientes en Inicio
+8. Personalizar desde Configuración
+9. Los cambios se guardan automáticamente en almacenamiento local
+10. Importar o exportar información cuando sea necesario
 
 ---
 
-## 📦 Descarga e instalación
+## 🏗️ Arquitectura
 
-Este repositorio distribuye la aplicación mediante [`download.zip`](download.zip). El ZIP contiene el archivo `project.apk`.
+El proyecto separa la interfaz, lógica de negocio, dominio y persistencia, y en esta entrega pública se mantiene la estructura de distribución final:
 
-1. Descarga [`download.zip`](download.zip) desde este repositorio.
-2. Extrae el archivo `project.apk` en tu dispositivo Android o en tu equipo.
-3. Si lo descargaste en otro equipo, transfiere el APK al dispositivo Android.
-4. Abre el APK y autoriza la instalación desde esa fuente cuando Android lo solicite.
-
-> Android puede mostrar una advertencia al instalar un APK descargado fuera de Google Play. Instálalo únicamente si confías en el origen del archivo.
-
-### Contenido del repositorio
-
-```text
+```
 .
-├── download.zip       # Paquete de distribución que contiene project.apk
-├── imagenes/          # Capturas de la aplicación
+├── download.zip       # Paquete de distribución con la versión disponible
+├── imagenes/          # Capturas de pantalla de la aplicación
 ├── LICENSE            # Licencia MIT + Commons Clause
-└── README.md          # Documentación del proyecto 
+└── README.md          # Documentación del repositorio
 ```
 
-Este repositorio no incluye el código fuente de la aplicación; solo incluye el paquete de distribución y las capturas de la versión disponible.
+**Componentes principales de la entrega pública:**
+- **Aplicación distributiva:** APK empacado en [`download.zip`](download.zip)
+- **Capturas visuales:** Material gráfico para revisión de la interfaz
+- **Documentación:** Instrucciones, estado del proyecto y licencia
+- **Persistencia local:** La app guarda datos en el dispositivo para uso personal
 
+> Este repositorio no incluye el proyecto completo de desarrollo ni su estructura interna original, sino la versión preparada para uso y distribución pública.
+
+---
+
+## 🔨 Instalación y configuración
+
+### Requisitos previos
+
+- **Android** para instalar la app distribuida
+- **Windows, macOS o Linux** para extraer el archivo ZIP
+- **Permisos de instalación de fuentes desconocidas** en Android
+
+### Pasos de instalación
+
+#### 1. Descargar la versión disponible
+
+Descarga el archivo [`download.zip`](download.zip) desde este repositorio.
+
+#### 2. Extraer el paquete
+
+Descomprime el archivo ZIP en tu equipo o dispositivo.
+
+#### 3. Instalar el APK
+
+1. Localiza el archivo APK incluido en el ZIP.
+2. Transfiérelo al dispositivo Android si es necesario.
+3. Abre el APK y acepta la autorización del sistema.
+
+> Android puede mostrar una advertencia al instalar una app fuera de Google Play. Instálala solo si confías en la fuente.
 ---
 
 ## 🛠️ Tecnologías
@@ -227,6 +268,15 @@ La aplicación puede descargarse desde [`download.zip`](download.zip) en este re
 
 ## 📋 Estado del proyecto
 
+**Estado actual de la entrega pública:**
+- ✅ APK disponible para descarga en [`download.zip`](download.zip)
+- ✅ Capturas de pantalla actualizadas en [`imagenes/`](imagenes/)
+- ✅ Funcionalidades principales de cartera, movimientos, transferencias y deudas
+- ✅ Persistencia local, configuraciones y exportación/importación CSV
+- ✅ Documentación y licencia actualizadas
+- ❌ No incluye el código fuente del proyecto principal
+- ❌ No incluye entorno de desarrollo ni estructura de trabajo completa
+
 **Características implementadas:**
 - ✅ Gestión de cuentas (crear, editar, eliminar)
 - ✅ Registros de movimientos (ingresos y gastos)
@@ -234,10 +284,13 @@ La aplicación puede descargarse desde [`download.zip`](download.zip) en este re
 - ✅ Balances y consultas
 - ✅ Filtros por período, cuenta, tipo y categoría
 - ✅ Predicciones iniciales (reservadas para una futura vista de análisis)
-- ✅ Gestión completa de deudas e intereses
+- ✅ Gestión completa de deudas como cuentas: gastos, avances e intereses sobre la deuda
+- ✅ Cargos de deuda agrupados por categoría (`category_debt`) con imputación de intereses
+- ✅ Conversión de una cuenta existente en deuda (reprocesa su historial)
 - ✅ Pagos de deuda asociados a cuenta, categoría y `debt_id`
 - ✅ Clasificación de deudas activas y cerradas
-- ✅ Detalle de deuda con movimientos asociados y acciones de pago, interés y modificación
+- ✅ Detalle de deuda con desglose por categoría (capital e interés pagado) y movimientos asociados
+- ✅ Deudas visibles en Inicio y seleccionables en movimientos/transferencias
 - ✅ Configuración personalizable
 - ✅ Persistencia local (JSON)
 - ✅ Importación/Exportación CSV (formato Money Manager)
@@ -257,7 +310,7 @@ La aplicación puede descargarse desde [`download.zip`](download.zip) en este re
 | **3 — Pruebas de uso real** | ✅ Finalizada | Detección y corrección de problemas de navegación, rendimiento y UX |
 | **4 — Reorganización visual** | ✅ Finalizada | Rediseño completo de UI/UX, nuevos formularios y enfoque en productividad |
 | **5 — Estadísticas y predicciones** | ⏸️ Pospuesta | Llevar gráficos, estadísticas y predicciones a una futura ventana de análisis |
-| **6 — Deudas** | ✅ Finalizada | Capital, intereses, pagos asociados y deudas cerradas |
+| **6 — Deudas** | ✅ Finalizada | Deudas como cuentas, cargos por categoría, imputación de intereses, conversión de cuenta a deuda y deudas cerradas |
 | **7 — Inversiones** | ⏳ Pendiente | Inversiones, objetivos de ahorro y seguimiento de rendimiento |
 | **8 — Automatización** | ⏳ Pendiente | Pagos automáticos, generación de reportes periódicos, alertas |
 | **9 — Pulido técnico** | ⏳ Pendiente | Optimizaciones, simplificaciones y mejora de estabilidad |
@@ -300,7 +353,7 @@ R: No. La aplicación funciona completamente offline. La conexión a internet es
 R: Actualmente, los datos se sincronizan manualmente mediante export/import CSV. La sincronización automática podría ser una funcionalidad futura.
 
 **P: ¿Qué requisitos de espacio en disco necesito?**
-R: La aplicación ocupa aproximadamente 150-200 MB. El almacenamiento de datos adicionales depende del número de movimientos registrados (actualmente menos de 1 MB por 3800 registros).
+R: La aplicación ocupa aproximadamente 150-200 MB. El almacenamiento de datos adicionales depende del número de movimientos registrados (Actualmente menos de 1 mega por 3800 registros).
 
 ### 🐛 Problemas y solución
 
@@ -346,18 +399,5 @@ Para los términos completos, consulta el archivo [`LICENSE`](LICENSE).
 - Las contribuciones son bienvenidas pero primero consulta los issues abiertos
 - Respeta la filosofía del proyecto: calidad sobre cantidad
 
----
-
-## 📝 Mejoras implementadas en este README
-
-- ✅ Actualización del estado real del proyecto
-- ✅ Alineación con la distribución actual del repositorio: `download.zip` + imágenes
-- ✅ Documentación de gestión de deudas e intereses
-- ✅ Ajuste del roadmap y del estado de funcionalidades
-- ✅ Mantenimiento de capturas y flujo de instalación del APK
-- ✅ Clarificación de que este repositorio no incluye el código fuente
-- ✅ Mejora de la sección de licencia y compatibilidad
-
----
 
 **Última actualización:** Septiembre 2026 | **Mantenedor:** [BJhojan](https://github.com/BJhojan)
