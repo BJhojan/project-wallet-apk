@@ -353,12 +353,12 @@ R: No. La aplicación funciona completamente offline. La conexión a internet es
 R: Actualmente, los datos se sincronizan manualmente mediante export/import CSV. La sincronización automática podría ser una funcionalidad futura.
 
 **P: ¿Qué requisitos de espacio en disco necesito?**
-R: La aplicación ocupa aproximadamente 150-200 MB. El almacenamiento de datos adicionales depende del número de movimientos registrados (Actualmente menos de 1 mega por 3800 registros).
+R: La aplicación ocupa aproximadamente 203 MB. El almacenamiento de datos adicionales es de aproximadamente 200 megas adicionales.
 
 ### 🐛 Problemas y solución
 
 **P: ¿Cómo reporto un bug o sugiero una mejora?**
-R: Abre un [issue en GitHub](https://github.com/BJhojan/project-wallet/issues/new) con descripción detallada. Consulta también el [roadmap](#-roadmap) para ver si ya está planeado.
+R: Abre un [issue en GitHub](https://github.com/BJhojan/project-wallet-apk/issues/new) con descripción detallada. Consulta también el [roadmap](#-roadmap) para ver si ya está planeado.
 
 **P: ¿Se pierden los datos si desinstalo la app?**
 R: En Android, los datos se conservan si mantienes el almacenamiento de datos. En escritorio, verifica la ubicación de los archivos antes de desinstalar.
@@ -390,8 +390,8 @@ Para los términos completos, consulta el archivo [`LICENSE`](LICENSE).
 
 ¿Encontraste un bug o tienes una sugerencia?
 
-- **Reportar un issue:** [Abre un issue aquí](https://github.com/BJhojan/project-wallet/issues/new/choose)
-- **Ver issues abiertos:** [Consulta issues activos](https://github.com/BJhojan/project-wallet/issues)
+- **Reportar un issue:** [Abre un issue aquí](https://github.com/BJhojan/project-wallet-apk/issues/new/choose)
+- **Ver issues abiertos:** [Consulta issues activos](https://github.com/BJhojan/project-wallet-apk/issues)
 - **Consultar el roadmap:** Revisa la sección [Roadmap](#-roadmap) para ver qué está planeado
 
 **Notas importantes:**
